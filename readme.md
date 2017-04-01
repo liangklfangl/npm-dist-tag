@@ -107,6 +107,49 @@ npm dist-tag add n-n-n-n@1.0.2-1 latest
 ```
 此时latest版本已经是prerelease版本"1.0.2-1"了！此时用户如果直接运行npm install就会安装我们的prerelease版本了，因为版本已经更新了！
 
+当然，我们的npm publish可以有很多tag的，比如上面是beta，也可以是stable, dev, canary等，比如下面你继续运行：
+```js
+ git add -A && git commit -m "c"
+ npm version prerelease
+ npm publish --tag -dev
+```
+此时你运行npm info就会得到下面的信息：
+```js
+{ name: 'n-n-n-n',
+  'dist-tags': { latest: '1.0.2-1', '-beta': '1.0.2-1', '-dev': '1.0.2-2' },
+  versions: [ '1.0.0', '1.0.1', '1.0.2-0', '1.0.2-1', '1.0.2-2' ],
+  maintainers: [ 'liangklfang <liangklfang@163.com>' ],
+  time:
+   { modified: '2017-04-01T13:01:17.106Z',
+     created: '2017-04-01T12:15:23.605Z',
+     '1.0.0': '2017-04-01T12:15:23.605Z',
+     '1.0.1': '2017-04-01T12:16:24.916Z',
+     '1.0.2-0': '2017-04-01T12:17:23.354Z',
+     '1.0.2-1': '2017-04-01T12:17:56.755Z',
+     '1.0.2-2': '2017-04-01T13:01:17.106Z' },
+  homepage: 'https://github.com/liangklfang/n#readme',
+  repository: { type: 'git', url: 'git+https://github.com/liangklfang/n.git' },
+  bugs: { url: 'https://github.com/liangklfang/n/issues' },
+  license: 'ISC',
+  readmeFilename: 'README.md',
+  version: '1.0.2-1',
+  description: '',
+  main: 'index.js',
+  scripts: { test: 'echo "Error: no test specified" && exit 1' },
+  author: '',
+  gitHead: '03189d2cc61604aa05f4b93e429d3caa3b637f8c',
+  dist:
+   { shasum: '41ea170a6b155c8d61658cd4c309f0d5d1b12ced',
+     tarball: 'https://registry.npmjs.org/n-n-n-n/-/n-n-n-n-1.0.2-1.tgz' },
+  directories: {} }
+```
+重点关注如下内容
+```js
+ 'dist-tags': { latest: '1.0.2-1', '-beta': '1.0.2-1', '-dev': '1.0.2-2' },
+  versions: [ '1.0.0', '1.0.1', '1.0.2-0', '1.0.2-1', '1.0.2-2' ],
+```
+此时你会看到-beta版本最新是1.0.2-1，而-dev版本最新是1.0.2-2
+
 
 参考资料：
 
